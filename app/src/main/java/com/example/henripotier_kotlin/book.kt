@@ -1,3 +1,4 @@
 package com.example.henripotier_kotlin
 
-data class Book( var title :String, var autor :String, var price:Double)
+data class Book( var isbn :String, var title :String, var price: Int,var cover: String, var synopsis: String )
+

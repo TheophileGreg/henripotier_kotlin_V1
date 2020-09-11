@@ -8,6 +8,7 @@ import android.widget.Button
 import android.util.Log
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.beust.klaxon.Klaxon
 import com.github.kittinunf.fuel.Fuel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.net.HttpURLConnection
@@ -16,12 +17,11 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
 
     val cart = mutableSetOf<Book>()
-    var book1 = Book("book1Henri", "J.K", 25.0);
-    var book2 = Book("book2Henri", "J.K", 35.0);
-    var book3 = Book("book3Henri", "J.K", 30.0);
+    var book1 = Book("book1Henri", "J.K", 25, "", "");
+    var book2 = Book("book2Henri", "J.K", 35, "", "");
+    var book3 = Book("book3Henri", "J.K", 30, "", "" );
 
-    val jsonBooksList = "{\n" +
-            "  \"Books\": \n" +
+    val jsonBooksList = "[\n" +
             "  {\n" +
             "    \"isbn\": \"c8fabf68-8374-48fe-a7ea-a00ccd07afff\",\n" +
             "    \"title\": \"Henri Potier à l'école des sorciers\",\n" +
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             "      \"Cette année, Henri a 17 ans et ne retourne pas à l'école de Poudlard après la mort de Dumbledore. Avec Ron et Hermione il se consacre à la dernière mission confiée par Dumbledore. Le Seigneur des Ténèbres règne en maître et traque les fidèles amis qui sont réduit à la clandestinité. D'épreuves en révélations, le courage, les choix et les sacrifices de Henri seront déterminants dans la lutte contre les forces du Mal.\"\n" +
             "    ]\n" +
             "  }\n" +
-            "]"+ "}"
+            "]"
 
     val jsonDiscount = "{\n" +
             "  \"offers\": [\n" +
@@ -117,6 +117,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val resultKlaxon = Klaxon().parse<Book>(("""
+    {
+      "isbn": "totoroferv",
+      "title": "titlefervet",
+      "price": 30 ,
+      "cover": "freagvetbecover",
+      "synopsis": "fra synopppp"
+    }
+    """))
+        println(resultKlaxon.toString());
 
 
         //Redondance set listener sur tout les boutons de la page et passer en parametre de la function pour ajouter le bon livre
