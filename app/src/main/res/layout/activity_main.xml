@@ -28,9 +28,15 @@
             android:text="@string/book3_button" />
 
         <TextView
+            android:id="@+id/cartDetails_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cartDetails_text" />
+
+        <TextView
             android:id="@+id/sum_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/sum_text" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

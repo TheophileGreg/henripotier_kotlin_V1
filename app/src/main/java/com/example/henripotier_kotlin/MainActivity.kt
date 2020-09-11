@@ -35,17 +35,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Comment récupérer le bon livre , if/When ?
+    private fun addBook(view: View, bookAdded: Book) {
+        cart.add(bookAdded)
+        refreshSum(view)
+    }
+
     private fun addBook1(view: View) {
         cart.add(book1)
         refreshSum(view)
+        refreshCartDetails(view)
     }
+
     private fun addBook2(view: View) {
         cart.add(book2)
         refreshSum(view)
+        refreshCartDetails(view)
     }
     private fun addBook3(view: View) {
         cart.add(book3)
         refreshSum(view)
+        refreshCartDetails(view)
     }
 
     private fun refreshSum(view: View){
@@ -55,6 +65,16 @@ class MainActivity : AppCompatActivity() {
             sum += it.price;
         }
         sumText.text = sum.toString()
+
+    }
+
+    private fun refreshCartDetails(view: View){
+        val cartText = findViewById<TextView>(R.id.cartDetails_text);
+        var cartDetails = "Votre panier contient : "
+        cart.forEach {
+            cartDetails += it.title + "; " ;
+        }
+        cartText.text = cartDetails.toString()
 
     }
 }

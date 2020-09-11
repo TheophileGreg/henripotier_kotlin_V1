@@ -3,4 +3,6 @@
     <string name="book1_button">Add book1</string>
     <string name="book2_button">add book2</string>
     <string name="book3_button">add book3</string>
+    <string name="cartDetails_text">Votre panier est vide</string>
+    <string name="sum_text">0</string>
 </resources>
