@@ -38,5 +38,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sum_text" />
+
+        <Button
+            android:id="@+id/getDiscount_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/getDiscount_button" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

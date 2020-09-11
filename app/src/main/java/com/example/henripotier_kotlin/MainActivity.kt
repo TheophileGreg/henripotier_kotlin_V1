@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         cart.forEach {
             sum += it.price;
         }
-        sumText.text = sum.toString()
+        sumText.text = " Le total du panier avant remise est de : " + sum.toString() + "€ "
 
     }
 
