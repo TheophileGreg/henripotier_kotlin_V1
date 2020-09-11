@@ -1,12 +1,16 @@
 package com.example.henripotier_kotlin
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.util.Log
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_main.*
+import java.net.HttpURLConnection
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     var book1 = Book("book1Henri", "J.K", 25.0);
     var book2 = Book("book2Henri", "J.K", 35.0);
     var book3 = Book("book3Henri", "J.K", 30.0);
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +37,13 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.book3_button).setOnClickListener{
             addBook3(it)
 
+        }
+
+        findViewById<Button>(R.id.getDiscount_button).setOnClickListener{
+            var testReq = URL("https://google.com").readText()
+            findViewById<TextView>(R.id.discountPrice_text).text = testReq
+            //getDiscount()
+            //Display le prix après réduction mais dès qu'une autre produit
         }
     }
 
@@ -66,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         }
         sumText.text = " Le total du panier avant remise est de : " + sum.toString() + "€ "
 
+        //Remettre a zero la réduction et réafficher le button "Obtenir une réduction"
     }
 
     private fun refreshCartDetails(view: View){
@@ -77,4 +90,8 @@ class MainActivity : AppCompatActivity() {
         cartText.text = cartDetails.toString()
 
     }
+
+
+
+
 }

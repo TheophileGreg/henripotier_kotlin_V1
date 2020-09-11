@@ -6,4 +6,5 @@
     <string name="cartDetails_text">Votre panier est vide</string>
     <string name="sum_text">0</string>
     <string name="getDiscount_button">Obtenir une remise</string>
+    <string name="discountPrice_text">Demandez-votre remise ci-dessus</string>
 </resources>
