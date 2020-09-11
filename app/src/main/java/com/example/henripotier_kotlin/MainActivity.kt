@@ -8,6 +8,7 @@ import android.widget.Button
 import android.util.Log
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.github.kittinunf.fuel.Fuel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.net.HttpURLConnection
 import java.net.URL
@@ -40,8 +41,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.getDiscount_button).setOnClickListener{
-            var testReq = URL("https://google.com").readText()
-            findViewById<TextView>(R.id.discountPrice_text).text = testReq
+            Fuel.get("http://henri-potier.xebia.fr/books/")
+                .response { request, response, result ->
+                    println(request)
+                    println(response)
+                    val (bytes, error) = result
+                    if (bytes != null) {
+                        println("[response bytes] ${String(bytes)}")
+                    }
+                }
             //getDiscount()
             //Display le prix après réduction mais dès qu'une autre produit
         }
