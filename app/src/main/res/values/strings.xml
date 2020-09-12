@@ -7,4 +7,8 @@
     <string name="sum_text">0</string>
     <string name="getDiscount_button">Obtenir une remise</string>
     <string name="discountPrice_text">Demandez-votre remise ci-dessus</string>
+    <string name="book4_button">Add book4</string>
+    <string name="book5_button">Add book5</string>
+    <string name="priceAfterDiscount_text">Ici s\'afficherat le prix après remise</string>
+    <string name="reset_button">Reset</string>
 </resources>
