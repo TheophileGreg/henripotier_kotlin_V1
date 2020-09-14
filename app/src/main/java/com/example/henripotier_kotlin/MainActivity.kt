@@ -1,5 +1,6 @@
 package com.example.henripotier_kotlin
 
+import android.app.ProgressDialog
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,16 +8,23 @@ import android.util.JsonReader
 import android.view.View
 import android.widget.Button
 import android.util.Log
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.beust.klaxon.Klaxon
 import com.github.kittinunf.fuel.Fuel
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.StringReader
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.math.max
 import kotlin.math.min
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,10 +41,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //println(parse(JsonReader(StringReader(jsonBooksList))));
-
-
+        getCurrentData()
 
         //Redondance set listener sur tout les boutons de la page et passer en parametre de la function pour ajouter le bon livre
         findViewById<Button>(R.id.book1_button).setOnClickListener{
@@ -86,7 +91,43 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getBestDiscount(discounts: discounts, cartPrice: Double):Double {
+    internal fun getCurrentData() {
+
+        var bookData = findViewById<TextView>(R.id.bookData_text);
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://henri-potier.xebia.fr")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(BookService::class.java)
+        val call = service.getCurrentBooksData()
+        call.enqueue(object : Callback<BookResponse> {
+            override fun onResponse(call: Call<BookResponse>, response: Response<BookResponse>) {
+                if (response.code() == 200) {
+                    val bookResponse = response.body()!!
+
+                    //Rajouter un for pour tout les livres
+                    val stringBuilder = "Title: " +
+                            bookResponse.books[1].title +
+                            "\n" +
+                            "isbn: " +
+                            bookResponse.books[1].isbn +
+                            "\n" +
+                            "Price: " +
+                            bookResponse.books[1].price
+
+                    bookData!!.text = stringBuilder
+                }
+            }
+
+            override fun onFailure(call: Call<BookResponse>, t: Throwable) {
+                bookData!!.text = t.message
+            }
+        })
+    }
+
+
+    fun getBestDiscount(discounts: discounts, cartPrice: Double):Double {
         var a = discounts.minusDiscount
         var b = (cartPrice / 100) * discounts.percentageDiscount
         var c = (cartPrice  / discounts.sliceDiscount.sliceValue) * discounts.sliceDiscount.valueMinus
@@ -134,6 +175,7 @@ class MainActivity : AppCompatActivity() {
         cart.resetCart();
         refreshCartDetails(view);
         refreshSum(view)
+        getCurrentData()
     }
 
     private fun addBook1(view: View) {

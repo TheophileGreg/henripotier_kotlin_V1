@@ -22,7 +22,7 @@ class cart(){
     fun getSumCart(): Double{
         var sum = 0.0
         listBook.forEach {
-            sum += it.price;
+            sum += it.price!!;
         }
         return sum
     }
