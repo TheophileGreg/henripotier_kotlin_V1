@@ -67,4 +67,17 @@
         android:layout_height="wrap_content"
         android:text="@string/sum_text" />
 
+    <TextView
+        android:id="@+id/discountPrice_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/discountPrice_text" />
+
+
+    <TextView
+        android:id="@+id/priceAfterDiscount_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/priceAfterDiscount_text" />
+
 </LinearLayout>

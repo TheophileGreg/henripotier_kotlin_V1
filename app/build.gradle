@@ -4,6 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     dataBinding {
         enabled = true
     }
@@ -33,10 +39,6 @@ android {
 }
 
 
-kapt {
-    generateStubs = true
-}
-
 repositories {
     jcenter()
 }
@@ -54,14 +56,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-<<<<<<< HEAD
+
     implementation 'com.github.kittinunf.fuel:fuel:2.2.3'
     implementation 'com.beust:klaxon:5.0.1'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.6.4'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.0'
     implementation 'com.github.bumptech.glide:glide:3.8.0'
-=======
-    kapt "com.android.databinding:compiler:4.0.1"
->>>>>>> c0c00108dd2c0cf25ff3bfe545855c48ba3bd519
+
 }

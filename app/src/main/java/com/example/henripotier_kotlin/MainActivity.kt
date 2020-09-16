@@ -1,24 +1,17 @@
 package com.example.henripotier_kotlin
 
-import android.app.ProgressDialog
-import android.os.Build
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.JsonReader
+
 import android.view.View
-import android.widget.Button
-import android.util.Log
-import android.widget.ProgressBar
+
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-import java.io.StringReader
-import java.net.HttpURLConnection
-import java.net.URL
 import kotlin.math.max
-import kotlin.math.min
+
 
 
 
@@ -64,27 +57,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setListeners()
 
-
+    }
        fun setListeners() {
-            val clickableView: List<View> =
-                listOf(book1_button, book2_button, book4_button, book3_button, book5_button)
-            for (item in clickableView) {
-                item.setOnClickListener { addBook(it) }
-            }
+           val clickableView: List<View> =
+               listOf(book1_button, book2_button, book4_button, book3_button, book5_button)
+           for (item in clickableView) {
+               item.setOnClickListener { addBookView(it) }
+           }
+       }
 
-
-           fun addBook(view: View) {
+           fun addBookView(view: View) {
                when (view.id) {
-                   R.id.book1_button -> cart.add(book1)
-                   R.id.book2_button -> cart.add(book2)
-                   R.id.book3_button -> cart.add(book3)
-                   R.id.book4_button -> cart.add(book4)
-                   R.id.book5_button -> cart.add(book5)
+                   R.id.book1_button -> cart.addBook(book1)
+                   R.id.book2_button -> cart.addBook(book2)
+                   R.id.book3_button -> cart.addBook(book3)
+                   R.id.book4_button -> cart.addBook(book4)
+                   R.id.book5_button -> cart.addBook(book5)
                }
                refreshSum(view)
                refreshCartDetails(view)
 
            }
+
 
 
             fun getBestDiscount(discounts: discounts, cartPrice: Double): Double {
@@ -126,6 +120,6 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-    }
-}
+
+
 
