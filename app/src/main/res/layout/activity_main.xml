@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> c0c00108dd2c0cf25ff3bfe545855c48ba3bd519
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
+    <Button
+        android:id="@+id/book1_button"
+        style="@style/WhiteBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="@string/book1_button" />
+
+    <Button
+        android:id="@+id/book2_button"
+        style="@style/WhiteBox"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/book2_button" />
+
+    <Button
+        android:id="@+id/book3_button"
+        style="@style/WhiteBox"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/book3_button" />
+
+<<<<<<< HEAD
 
     <RecyclerView
         android:id="@+id/simple_recyclerview"
@@ -12,3 +47,36 @@
         android:layout_height="match_parent" />
 </FrameLayout>
 
+=======
+    <Button
+        android:id="@+id/book4_button"
+        style="@style/WhiteBox"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/book4_button" />
+
+    <Button
+        android:id="@+id/book5_button"
+        style="@style/WhiteBox"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/book5_button" />
+
+    <TextView
+        android:id="@+id/cartDetails_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cartDetails_text" />
+
+    <TextView
+        android:id="@+id/sum_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sum_text" />
+
+</LinearLayout>
+>>>>>>> c0c00108dd2c0cf25ff3bfe545855c48ba3bd519
