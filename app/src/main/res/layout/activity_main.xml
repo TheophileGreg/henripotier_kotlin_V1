@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-=======
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> c0c00108dd2c0cf25ff3bfe545855c48ba3bd519
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -39,15 +36,7 @@
         android:layout_height="wrap_content"
         android:text="@string/book3_button" />
 
-<<<<<<< HEAD
 
-    <RecyclerView
-        android:id="@+id/simple_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</FrameLayout>
-
-=======
     <Button
         android:id="@+id/book4_button"
         style="@style/WhiteBox"
@@ -79,4 +68,3 @@
         android:text="@string/sum_text" />
 
 </LinearLayout>
->>>>>>> c0c00108dd2c0cf25ff3bfe545855c48ba3bd519

@@ -62,64 +62,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //getCurrentData()
-
-        //Redondance set listener sur tout les boutons de la page et passer en parametre de la function pour ajouter le bon livre
-        findViewById<Button>(R.id.book1_button).setOnClickListener {
-            addBook1(it)
-        }
-        findViewById<Button>(R.id.book2_button).setOnClickListener {
-            addBook2(it)
-        }
-        findViewById<Button>(R.id.book3_button).setOnClickListener {
-            addBook3(it)
-        }
-        findViewById<Button>(R.id.book4_button).setOnClickListener {
-            addBook4(it)
-        }
-        findViewById<Button>(R.id.book5_button).setOnClickListener {
-            addBook5(it)
-        }
-
-        findViewById<Button>(R.id.reset_button).setOnClickListener {
-            reset(it);
-            findViewById<TextView>(R.id.discountPrice_text).text = "";
-            findViewById<TextView>(R.id.priceAfterDiscount_text).text = "";
+        setListeners()
 
 
-            val cart = mutableSetOf<Book>()
-
-
-
-
-
-            findViewById<Button>(R.id.getDiscount_button).setOnClickListener {
-                getBestDiscount(disounts, cart.getSumCart());
-
-
-                //getDiscount()
-                /*Fuel.get("http://henri-potier.xebia.fr/books/")
-                .response { request, response, result ->
-                    println(request)
-                    println(response)
-                    val (bytes, error) = result
-                    if (bytes != null) {
-                        println("[response bytes] ${String(bytes)}")
-                    }
-                }*/
-
-
-                //Display le prix après réduction mais dès qu'une autre produit
-            }
-        }
-
-        private fun setListeners() {
+       fun setListeners() {
             val clickableView: List<View> =
                 listOf(book1_button, book2_button, book4_button, book3_button, book5_button)
             for (item in clickableView) {
                 item.setOnClickListener { addBook(it) }
-
             }
+
+
+           fun addBook(view: View) {
+               when (view.id) {
+                   R.id.book1_button -> cart.add(book1)
+                   R.id.book2_button -> cart.add(book2)
+                   R.id.book3_button -> cart.add(book3)
+                   R.id.book4_button -> cart.add(book4)
+                   R.id.book5_button -> cart.add(book5)
+               }
+               refreshSum(view)
+               refreshCartDetails(view)
+
+           }
 
 
             fun getBestDiscount(discounts: discounts, cartPrice: Double): Double {
@@ -138,50 +103,6 @@ class MainActivity : AppCompatActivity() {
                 return max(max(a, b), c)
 
 
-            }
-
-
-            fun addBook(view: View) {
-                when (view.id) {
-                    R.id.book1_button -> cart.add(book1)
-                    R.id.book2_button -> cart.add(book2)
-                    R.id.book3_button -> cart.add(book3)
-                    R.id.book4_button -> cart.add(book4)
-                    R.id.book5_button -> cart.add(book5)
-                }
-                refreshSum(view)
-                refreshCartDetails(view)
-
-            }
-
-            private fun addBook1(view: View) {
-                cart.addBook(book1)
-                refreshSum(view)
-                refreshCartDetails(view)
-            }
-
-            private fun addBook2(view: View) {
-                cart.addBook(book2)
-                refreshSum(view)
-                refreshCartDetails(view)
-            }
-
-            private fun addBook3(view: View) {
-                cart.addBook(book3)
-                refreshSum(view)
-                refreshCartDetails(view)
-            }
-
-            private fun addBook4(view: View) {
-                cart.addBook(book4)
-                refreshSum(view)
-                refreshCartDetails(view)
-            }
-
-            private fun addBook5(view: View) {
-                cart.addBook(book5)
-                refreshSum(view)
-                refreshCartDetails(view)
             }
 
             fun refreshSum(view: View) {
