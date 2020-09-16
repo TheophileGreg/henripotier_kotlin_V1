@@ -156,7 +156,9 @@ class MainActivity : AppCompatActivity() {
         val priceAfterDiscountText = findViewById<TextView>(R.id.priceAfterDiscount_text);
         discountText.text = max(max(a, b), c).toString()
         priceAfterDiscountText.text = "Le prix après réduction est maintenant de : " + (cartPrice - max(max(a, b), c)).toString()
-        return max(max(a, b), c)
+        return max(max(a, b),  c)
+
+
     }
 
 
