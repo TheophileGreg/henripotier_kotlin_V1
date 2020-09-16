@@ -41,28 +41,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getCurrentData()
+        //getCurrentData()
 
         //Redondance set listener sur tout les boutons de la page et passer en parametre de la function pour ajouter le bon livre
         findViewById<Button>(R.id.book1_button).setOnClickListener{
             addBook1(it)
-
         }
         findViewById<Button>(R.id.book2_button).setOnClickListener{
             addBook2(it)
-
         }
         findViewById<Button>(R.id.book3_button).setOnClickListener{
             addBook3(it)
-
         }
         findViewById<Button>(R.id.book4_button).setOnClickListener{
             addBook4(it)
-
         }
         findViewById<Button>(R.id.book5_button).setOnClickListener{
             addBook5(it)
-
         }
 
         findViewById<Button>(R.id.reset_button).setOnClickListener{
@@ -91,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    internal fun getCurrentData() {
+    /*internal fun getCurrentData() {
 
         var bookData = findViewById<TextView>(R.id.bookData_text);
 
@@ -102,10 +97,12 @@ class MainActivity : AppCompatActivity() {
         val service = retrofit.create(BookService::class.java)
         val call = service.getCurrentBooksData()
         call.enqueue(object : Callback<BookResponse> {
+
             override fun onResponse(call: Call<BookResponse>, response: Response<BookResponse>) {
+                //println(response.code())
                 if (response.code() == 200) {
                     val bookResponse = response.body()!!
-
+                    //println(response.body())
                     //Rajouter un for pour tout les livres
                     val stringBuilder = "Title: " +
                             bookResponse.books[1].title +
@@ -116,16 +113,17 @@ class MainActivity : AppCompatActivity() {
                             "Price: " +
                             bookResponse.books[1].price
 
-                    bookData!!.text = stringBuilder
+                    bookData!!.text = bookResponse.toString()
                 }
             }
 
             override fun onFailure(call: Call<BookResponse>, t: Throwable) {
+
                 bookData!!.text = t.message
             }
         })
     }
-
+*/
 
     fun getBestDiscount(discounts: discounts, cartPrice: Double):Double {
         var a = discounts.minusDiscount
@@ -175,7 +173,7 @@ class MainActivity : AppCompatActivity() {
         cart.resetCart();
         refreshCartDetails(view);
         refreshSum(view)
-        getCurrentData()
+        
     }
 
     private fun addBook1(view: View) {

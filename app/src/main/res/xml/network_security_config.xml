@@ -3,7 +3,7 @@
 
         <base-config cleartextTrafficPermitted="false" />
         <domain-config cleartextTrafficPermitted="true">
-            <domain includeSubdomains="true">localhost</domain>
+            <domain includeSubdomains="true">henri-potier.xebia.fr</domain>
         </domain-config>
 
 </network-security-config>
