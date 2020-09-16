@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+
+
     val cart = mutableSetOf<Book>()
     var book1 = Book("book1Henri", "J.K", 25.0);
     var book2 = Book("book2Henri", "J.K", 35.0);
