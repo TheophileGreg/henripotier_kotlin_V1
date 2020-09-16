@@ -7,10 +7,10 @@ import android.widget.Button
 import android.util.Log
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
+import com.example.henripotier_kotlin.databinding.ActivityBinding
 
 class MainActivity : AppCompatActivity() {
-
-
+    private lateinit var binding: ActivityMainBinding
 
     val cart = mutableSetOf<Book>()
     var book1 = Book("book1Henri", "J.K", 25.0);
