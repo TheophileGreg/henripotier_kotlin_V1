@@ -1,94 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/req_button"
-        style="@style/WhiteBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:text="@string/send_request" />
 
-    <Button
-        android:id="@+id/book1_button"
-        style="@style/WhiteBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:text="@string/book1_button" />
-
-
-    <Button
-        android:id="@+id/book2_button"
-        style="@style/WhiteBox"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/book2_button" />
-
-    <Button
-        android:id="@+id/book3_button"
-        style="@style/WhiteBox"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/book3_button" />
-
-
-    <Button
-        android:id="@+id/book4_button"
-        style="@style/WhiteBox"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/book4_button" />
-
-    <Button
-        android:id="@+id/book5_button"
-        style="@style/WhiteBox"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/book5_button" />
-
-    <TextView
-        android:id="@+id/cartDetails_text"
+    <ListView
+        android:id="@+id/book_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cartDetails_text" />
-
-    <TextView
-        android:id="@+id/sum_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sum_text" />
-
-    <TextView
-        android:id="@+id/discountPrice_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/discountPrice_text" />
-
-
-    <TextView
-        android:id="@+id/priceAfterDiscount_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/priceAfterDiscount_text" />
-
-</LinearLayout>
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

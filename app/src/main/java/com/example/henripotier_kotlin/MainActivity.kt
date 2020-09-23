@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.util.Log
 
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.ListView
 
 import android.widget.TextView
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.json
 
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import org.json.JSONArray
 import java.net.URL
 
@@ -20,6 +22,8 @@ import kotlin.math.max
 
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var listView: ListView
 
     val cart = cart();
 
@@ -29,13 +33,28 @@ class MainActivity : AppCompatActivity() {
     val urlBooks = "http://henri-potier.xebia.fr/books"
     val bookList = mutableListOf<Book>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d("TestOnCreate", "test")
+
+        //setListeners()
         runBlocking {
             getBooks()
+            delay(5000)
         }
-        setListeners()
+
+        val listTitleBook = arrayOfNulls<String>(bookList.size)
+        listView = findViewById(R.id.book_listview)
+        for (i in 0 until bookList.size) {
+            listTitleBook[i] = bookList[i].title.toString()
+            Log.d("ListTitleBookdeBookList", bookList[i].title.toString())
+            Log.d("ListTitleBookDeListTitl", listTitleBook.toString())
+        }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listTitleBook)
+        listView.adapter = adapter
     }
 
     fun parseResponse(response: String) {
@@ -65,13 +84,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun setListeners() {
+    /*fun setListeners() {
         val clickableView: List<View> =
             listOf(book1_button, book2_button, book4_button, book3_button, book5_button, req_button)
         for (item in clickableView) {
             item.setOnClickListener { addBookView(it) }
         }
-    }
+    }*/
 
     fun getBooks() {
         Thread {
@@ -83,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
-    fun addBookView(view: View) {
+    /*fun addBookView(view: View) {
         when (view.id) {
             R.id.book1_button -> cart.addBook(bookList[1])
             R.id.book2_button -> cart.addBook(bookList[2])
@@ -114,7 +133,7 @@ class MainActivity : AppCompatActivity() {
         }
         cartText.text = cartDetails.toString()
 
-    }
+    }*/
 
 
 }
