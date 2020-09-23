@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             cover = jsonObject.getString("cover")
             bookList.add(Book(isbn, title, price, cover))
         }
-        println(bookList.toString())
+        //println(bookList.toString())
     }
 
 
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 parseResponse(txt)
 
             }.start()
-            R.id.book1_button -> Thread { cart.addBook(book1) }.start()
+            R.id.book1_button -> cart.addBook(book1)
             R.id.book2_button -> cart.addBook(book2)
             R.id.book3_button -> cart.addBook(book3)
             R.id.book4_button -> cart.addBook(book4)
