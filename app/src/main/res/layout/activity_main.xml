@@ -9,6 +9,16 @@
     android:orientation="vertical">
 
     <Button
+        android:id="@+id/req_button"
+        style="@style/WhiteBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="@string/send_request" />
+
+    <Button
         android:id="@+id/book1_button"
         style="@style/WhiteBox"
         android:layout_width="wrap_content"
@@ -17,6 +27,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:text="@string/book1_button" />
+
 
     <Button
         android:id="@+id/book2_button"

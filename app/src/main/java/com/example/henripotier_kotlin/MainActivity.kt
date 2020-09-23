@@ -3,12 +3,14 @@ package com.example.henripotier_kotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 import android.view.View
 
 import android.widget.TextView
 
 import kotlinx.android.synthetic.main.activity_main.*
+import java.net.URL
 
 import kotlin.math.max
 
@@ -50,7 +52,8 @@ class MainActivity : AppCompatActivity() {
     )
 
     val sliceDiscount = sliceDiscount(100.0, 12.0)
-    val disounts = discounts(15.0, 5.0, sliceDiscount)
+    val disounts = Discounts(15.0, 5.0, sliceDiscount)
+    val urlBooks = "http://henri-potier.xebia.fr/books"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +61,13 @@ class MainActivity : AppCompatActivity() {
         setListeners()
 
     }
+
+
+
+
        fun setListeners() {
            val clickableView: List<View> =
-               listOf(book1_button, book2_button, book4_button, book3_button, book5_button)
+               listOf(book1_button, book2_button, book4_button, book3_button, book5_button, req_button)
            for (item in clickableView) {
                item.setOnClickListener { addBookView(it) }
            }
@@ -68,7 +75,14 @@ class MainActivity : AppCompatActivity() {
 
            fun addBookView(view: View) {
                when (view.id) {
-                   R.id.book1_button -> cart.addBook(book1)
+                   R.id.req_button -> Thread{
+
+                           val txt = URL(urlBooks).readText()
+                           Log.d("TestReq", txt)
+
+
+                   }.start()
+                   R.id.book1_button -> Thread{cart.addBook(book1)}.start()
                    R.id.book2_button -> cart.addBook(book2)
                    R.id.book3_button -> cart.addBook(book3)
                    R.id.book4_button -> cart.addBook(book4)
@@ -81,23 +95,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-            fun getBestDiscount(discounts: discounts, cartPrice: Double): Double {
-                var a = discounts.minusDiscount
-                var b = (cartPrice / 100) * discounts.percentageDiscount
-                var c =
-                    (cartPrice / discounts.sliceDiscount.sliceValue) * discounts.sliceDiscount.valueMinus
-                val discountText = findViewById<TextView>(R.id.discountPrice_text);
-                val priceAfterDiscountText = findViewById<TextView>(R.id.priceAfterDiscount_text);
-                discountText.text = max(max(a, b), c).toString()
-                priceAfterDiscountText.text =
-                    "Le prix après réduction est maintenant de : " + (cartPrice - max(
-                        max(a, b),
-                        c
-                    )).toString()
-                return max(max(a, b), c)
-
-
-            }
 
             fun refreshSum(view: View) {
                 val sumText = findViewById<TextView>(R.id.sum_text);

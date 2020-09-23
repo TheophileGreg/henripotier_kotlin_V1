@@ -12,5 +12,6 @@
     <string name="priceAfterDiscount_text">Ici s\'affichera le prix après remise</string>
     <string name="reset_button">Reset</string>
     <string name="bookData_text">Pas encore reçu</string>
+    <string name="send_request">Send request</string>
 
 </resources>
