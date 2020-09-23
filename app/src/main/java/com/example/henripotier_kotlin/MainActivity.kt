@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.View
 
 import android.widget.TextView
+import com.beust.klaxon.JsonArray
+import com.beust.klaxon.json
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.runBlocking
@@ -41,16 +43,23 @@ class MainActivity : AppCompatActivity() {
         var title = ""
         var price = 0
         var cover = ""
+        var synopsis = ArrayList<String>()
 
         val jsonArray = JSONArray(response)
 
-        (0..6).forEach { index ->
+        (0 until jsonArray.length()).forEach { index ->
             val jsonObject = jsonArray.getJSONObject(index)
             isbn = jsonObject.getString("isbn")
             title = jsonObject.getString("title")
             price = jsonObject.getInt("price")
             cover = jsonObject.getString("cover")
-            bookList.add(Book(isbn, title, price, cover))
+            for (i in 0 until jsonObject.getJSONArray("synopsis").length()) {
+                synopsis.add(jsonObject.getJSONArray("synopsis")[i].toString())
+            }
+
+
+
+            bookList.add(Book(isbn, title, price, cover, synopsis))
         }
         //println(bookList.toString())
     }

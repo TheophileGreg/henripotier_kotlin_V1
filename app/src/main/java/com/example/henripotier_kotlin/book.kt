@@ -7,5 +7,6 @@ data class Book(
     var isbn: String? = null,
     var title: String? = null,
     var price: Int? = 0,
-    var cover: String? = null
+    var cover: String? = null,
+    var synopsis: ArrayList<String> = ArrayList()
 )

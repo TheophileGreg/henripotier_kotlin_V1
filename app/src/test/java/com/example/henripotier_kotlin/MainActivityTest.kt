@@ -17,9 +17,9 @@ class MainActivityTest {
         val sliceFour = sliceDiscount(0.0, 10.0)
         val discountsFour = Discounts(11.0, 17.0, sliceFour)
 
-        assertEquals(10.0, discountsOne.getBestDiscount(100.0), 1.0);
+        assertEquals(10.0, discountsOne.getBestDiscount(100.0), 0.001);
         assertEquals(20.0, discountsOne.getBestDiscount(200.0), 1.0);
         assertEquals(9.0, discountsTwo.getBestDiscount(15.0), 1.0);
-        assertEquals(20.0, discountsThree.getBestDiscount(90.0), 1.0);
+        assertEquals(24.0, discountsThree.getBestDiscount(90.0), 1.0);
     }
 }
