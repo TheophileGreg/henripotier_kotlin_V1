@@ -22,17 +22,8 @@ import kotlin.math.max
 
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var listView: ListView
-
-    val cart = cart();
-
-
-    val sliceDiscount = sliceDiscount(100.0, 12.0)
-    val disounts = Discounts(15.0, 5.0, sliceDiscount)
     val urlBooks = "http://henri-potier.xebia.fr/books"
     val bookList = mutableListOf<Book>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -43,18 +34,12 @@ class MainActivity : AppCompatActivity() {
         //setListeners()
         runBlocking {
             getBooks()
+
             delay(5000)
         }
 
-        val listTitleBook = arrayOfNulls<String>(bookList.size)
-        listView = findViewById(R.id.book_listview)
-        for (i in 0 until bookList.size) {
-            listTitleBook[i] = bookList[i].title.toString()
-            Log.d("ListTitleBookdeBookList", bookList[i].title.toString())
-            Log.d("ListTitleBookDeListTitl", listTitleBook.toString())
-        }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listTitleBook)
-        listView.adapter = adapter
+        val adapter = BookAdapter(this, bookList)
+        book_listview.adapter = adapter
     }
 
     fun parseResponse(response: String) {
@@ -75,9 +60,6 @@ class MainActivity : AppCompatActivity() {
             for (i in 0 until jsonObject.getJSONArray("synopsis").length()) {
                 synopsis.add(jsonObject.getJSONArray("synopsis")[i].toString())
             }
-
-
-
             bookList.add(Book(isbn, title, price, cover, synopsis))
         }
         //println(bookList.toString())

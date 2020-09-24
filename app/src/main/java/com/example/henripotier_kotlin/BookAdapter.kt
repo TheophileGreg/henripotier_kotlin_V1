@@ -5,26 +5,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
+import android.widget.TextView
 
-class BookAdapter(private val context: Context, private val dataSource: ArrayList<Book>) :
+class BookAdapter(private val context: Context, private val dataSource: MutableList<Book>) :
     BaseAdapter() {
 
     private val inflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        TODO("Not yet implemented")
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val rowView = inflater.inflate(R.layout.row, parent, false)
+
+        val titleTextView = rowView.findViewById(R.id.header) as TextView
+        val subtitleTextView = rowView.findViewById(R.id.text) as TextView
+        val book = getItem(position) as Book
+        titleTextView.text = book.title
+        subtitleTextView.text = book.synopsis[0]
+        return rowView
     }
 
-    override fun getItem(p0: Int): Any {
-        TODO("Not yet implemented")
+    override fun getItem(position: Int): Any {
+        return dataSource[position]
     }
 
-    override fun getItemId(p0: Int): Long {
-        TODO("Not yet implemented")
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
     }
 
     override fun getCount(): Int {
-        TODO("Not yet implemented")
+        return dataSource.size
     }
 }
