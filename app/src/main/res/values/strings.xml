@@ -14,5 +14,6 @@
     <string name="bookData_text">Pas encore reçu</string>
     <string name="send_request">Send request</string>
     <string name="header">Header</string>
+    <string name="content_description">Cover of the book</string>
 
 </resources>
