@@ -13,5 +13,6 @@
     <string name="reset_button">Reset</string>
     <string name="bookData_text">Pas encore reçu</string>
     <string name="send_request">Send request</string>
+    <string name="header">Header</string>
 
 </resources>
