@@ -55,11 +55,9 @@ class MainActivity : AppCompatActivity() {
         book_listview.setOnItemClickListener { _, _, position, _ ->
             // 1
             val bookDetail = bookList[position]
-
-
+            Cart.addBook(bookList[position])
             // 2
             val detailIntent = BookDetailActivity.newIntent(context, bookDetail)
-
             // 3
             startActivity(detailIntent)
         }
