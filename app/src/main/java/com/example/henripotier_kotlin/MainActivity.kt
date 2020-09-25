@@ -5,23 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
-
-import android.widget.TextView
-import com.beust.klaxon.JsonArray
-import com.beust.klaxon.json
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import org.json.JSONArray
 import java.net.URL
 
-import kotlin.math.max
-
 
 class MainActivity : AppCompatActivity() {
+    val cart = Cart()
     val urlBooks = "http://henri-potier.xebia.fr/books"
     val bookList = mutableListOf<Book>()
 
@@ -38,9 +29,24 @@ class MainActivity : AppCompatActivity() {
             delay(5000)
         }
 
-        val adapter = BookAdapter(this, bookList)
+        val adapter = BooksAdapter(this, bookList)
         book_listview.adapter = adapter
+        val context = this
+        book_listview.setOnItemClickListener { _, _, position, _ ->
+            // 1
+            val bookDetail = bookList[position]
+            cart.addBook(bookDetail)
+
+            // 2
+            val detailIntent = BookDetailActivity.newIntent(context, bookDetail)
+
+            // 3
+            startActivity(detailIntent)
+        }
     }
+
+
+
 
     fun parseResponse(response: String) {
         var isbn = ""

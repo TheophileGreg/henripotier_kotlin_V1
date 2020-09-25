@@ -15,5 +15,7 @@
     <string name="send_request">Send request</string>
     <string name="header">Header</string>
     <string name="content_description">Cover of the book</string>
+    <string name="totalprice">TotalPrice</string>
+    <string name="bookTitle_text">coucou_text</string>
 
 </resources>

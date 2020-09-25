@@ -1,8 +1,8 @@
 package com.example.henripotier_kotlin
 
-class cart() {
+class Cart() {
 
-    private val listBook: MutableSet<Book> = mutableSetOf<Book>();
+    val listBook: MutableSet<Book> = mutableSetOf<Book>();
 
     fun addBook(book: Book) {
         listBook.add(book)

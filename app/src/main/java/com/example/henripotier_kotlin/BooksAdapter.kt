@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide.with
 import com.squareup.picasso.Picasso
 
-class BookAdapter(private val context: Context, private val dataSource: MutableList<Book>) :
+class BooksAdapter(private val context: Context, private val dataSource: MutableList<Book>) :
     BaseAdapter() {
 
     private val inflater: LayoutInflater =
