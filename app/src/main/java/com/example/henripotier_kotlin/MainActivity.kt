@@ -12,7 +12,7 @@ import java.net.URL
 
 
 class MainActivity : AppCompatActivity() {
-    val cart = Cart()
+
     val urlBooks = "http://henri-potier.xebia.fr/books"
     val bookList = mutableListOf<Book>()
 
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         book_listview.setOnItemClickListener { _, _, position, _ ->
             // 1
             val bookDetail = bookList[position]
-            cart.addBook(bookDetail)
+
 
             // 2
             val detailIntent = BookDetailActivity.newIntent(context, bookDetail)
