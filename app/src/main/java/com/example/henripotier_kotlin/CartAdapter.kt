@@ -5,21 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 
-class CartAdapter(private val context: Context, private val dataSource: Cart) :
+class CartAdapter(private val context: Context, private val dataSource: MutableList<Book>) :
     BaseAdapter() {
     private val inflater: LayoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getCount(): Int {
-        return dataSource.getCart().size
+        return dataSource.size
     }
 
     override fun getItem(position: Int): Any {
-        return dataSource.getCart()[position]
+        return dataSource[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -32,9 +33,16 @@ class CartAdapter(private val context: Context, private val dataSource: Cart) :
         val subtitleTextView = rowView.findViewById(R.id.text) as TextView
 
 
+
+        val bookCoverImageView = rowView.findViewById(R.id.bookCover_image) as ImageView
+        val addButtonView = rowView.findViewById(R.id.AddToCart_button) as Button
+        val detailButtonView = rowView.findViewById(R.id.details_button) as Button
+
         val book = getItem(position) as Book
         titleTextView.text = book.title
         subtitleTextView.text = book.price.toString()
+        Picasso.get().load(book.cover).into(bookCoverImageView);
+
 
         return rowView
     }

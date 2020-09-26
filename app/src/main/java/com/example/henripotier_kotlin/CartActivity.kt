@@ -15,7 +15,7 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activity_cart)
 
-        val adapter = CartAdapter(this, Cart)
+        val adapter = CartAdapter(this, Cart.getCart().toMutableList())
         cart_listview.adapter = adapter
 
 
