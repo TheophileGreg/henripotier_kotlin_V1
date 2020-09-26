@@ -36,9 +36,10 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = BooksAdapter(this, bookList)
         book_listview.adapter = adapter
-        val context = this
+
 
         //Mise en place du floatingActionButton
+        val context = this
         val floatingButtonCart =
             main_view.findViewById<FloatingActionButton>(R.id.floatingActionButtonCart)
         Picasso.get()
@@ -49,18 +50,6 @@ class MainActivity : AppCompatActivity() {
             println("Open cart")
 
         }
-
-
-        //Set onClick sur les books
-        /*book_listview.setOnItemClickListener { _, _, position, _ ->
-            // 1
-            val bookDetail = bookList[position]
-            Cart.addBook(bookList[position])
-            // 2
-            val detailIntent = BookDetailActivity.newIntent(context, bookDetail)
-            // 3
-            startActivity(detailIntent)
-        }*/
     }
 
 
@@ -88,7 +77,6 @@ class MainActivity : AppCompatActivity() {
 
     fun getBooks() {
         Thread {
-
             val txt = URL(urlBooks).readText()
             Log.d("TestReq", txt)
             parseResponse(txt)

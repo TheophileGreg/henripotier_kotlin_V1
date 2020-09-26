@@ -1,7 +1,6 @@
 package com.example.henripotier_kotlin
 
 import android.content.Context
-import android.icu.number.NumberFormatter.with
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,6 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
-import com.bumptech.glide.Glide.with
 import com.squareup.picasso.Picasso
 
 class BooksAdapter(private val context: Context, private val dataSource: MutableList<Book>) :

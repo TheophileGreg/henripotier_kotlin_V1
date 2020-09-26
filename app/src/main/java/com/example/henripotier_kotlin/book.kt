@@ -14,7 +14,7 @@ class Book(var isbn: String? = null,
     private constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as Int,
         parcel.readString(),
         parcel.createStringArrayList() as ArrayList<String>
     ) {

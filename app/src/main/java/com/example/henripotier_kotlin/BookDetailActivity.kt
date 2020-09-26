@@ -27,9 +27,11 @@ class BookDetailActivity : AppCompatActivity() {
         val book : Book = intent.getParcelableExtra<Book>(EXTRA_BOOK) ?: return
 
 
-        val titleText = findViewById<TextView>(R.id.titleBook_text);
+        val titleText = findViewById<TextView>(R.id.titleBook_text)
+        val pricetext = findViewById(R.id.price_textView) as TextView
 
-        titleText.text = " Vous voulez obtenir des détails sur le livre : " + book.cover
+        titleText.text = " Vous voulez obtenir des détails sur le livre : ${book.cover} "
+        pricetext.text = book.price.toString()
 
     }
 }
