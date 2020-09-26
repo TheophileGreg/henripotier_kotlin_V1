@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //Set onClick sur les books
-        book_listview.setOnItemClickListener { _, _, position, _ ->
+        /*book_listview.setOnItemClickListener { _, _, position, _ ->
             // 1
             val bookDetail = bookList[position]
             Cart.addBook(bookList[position])
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             val detailIntent = BookDetailActivity.newIntent(context, bookDetail)
             // 3
             startActivity(detailIntent)
-        }
+        }*/
     }
 
 
@@ -84,17 +84,7 @@ class MainActivity : AppCompatActivity() {
             }
             bookList.add(Book(isbn, title, price, cover, synopsis))
         }
-        //println(bookList.toString())
     }
-
-
-    /*fun setListeners() {
-        val clickableView: List<View> =
-            listOf(book1_button, book2_button, book4_button, book3_button, book5_button, req_button)
-        for (item in clickableView) {
-            item.setOnClickListener { addBookView(it) }
-        }
-    }*/
 
     fun getBooks() {
         Thread {

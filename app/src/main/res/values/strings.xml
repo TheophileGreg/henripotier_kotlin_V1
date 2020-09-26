@@ -17,5 +17,7 @@
     <string name="content_description">Cover of the book</string>
     <string name="totalprice">TotalPrice</string>
     <string name="bookTitle_text">coucou_text</string>
+    <string name="detailsbutton_text">En savoir plus</string>
+    <string name="AddToCart_text">Ajouter</string>
 
 </resources>

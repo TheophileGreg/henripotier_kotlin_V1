@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import com.bumptech.glide.Glide.with
 import com.squareup.picasso.Picasso
 
@@ -22,9 +24,22 @@ class BooksAdapter(private val context: Context, private val dataSource: Mutable
         val titleTextView = rowView.findViewById(R.id.header) as TextView
         val subtitleTextView = rowView.findViewById(R.id.text) as TextView
         val bookCoverImageView = rowView.findViewById(R.id.bookCover_image) as ImageView
+        val addButtonView = rowView.findViewById(R.id.AddToCart_button) as Button
+        val detailButtonView = rowView.findViewById(R.id.details_button) as Button
         val book = getItem(position) as Book
         titleTextView.text = book.title
         subtitleTextView.text = book.synopsis[0]
+        addButtonView.setOnClickListener {
+            Cart.addBook(book)
+        }
+        detailButtonView.setOnClickListener {
+            context.startActivity(
+                BookDetailActivity.newIntent(
+                    context,
+                    book
+                )
+            )  //Pas compris tout les histoires de contexts
+        }
         Picasso.get().load(book.cover).into(bookCoverImageView);
         return rowView
     }
