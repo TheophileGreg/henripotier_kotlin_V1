@@ -21,6 +21,10 @@ object Cart {
         return totalCart
     }
 
+    fun remove(book: Book): Boolean{
+        return bookInCart.remove(book)
+    }
+
     fun sumCart() : Boolean{
         var res : Double = 0.0
         for (book in bookInCart) {

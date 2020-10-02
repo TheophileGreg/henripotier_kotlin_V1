@@ -28,20 +28,20 @@ class CartAdapter(private val context: Context, private val dataSource: MutableL
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val rowView = inflater.inflate(R.layout.row, parent, false)
-        val titleTextView = rowView.findViewById(R.id.header) as TextView
-        val subtitleTextView = rowView.findViewById(R.id.text) as TextView
-
-
-
-        val bookCoverImageView = rowView.findViewById(R.id.bookCover_image) as ImageView
-        val addButtonView = rowView.findViewById(R.id.AddToCart_button) as Button
-        val detailButtonView = rowView.findViewById(R.id.details_button) as Button
-
+        val rowView = inflater.inflate(R.layout.row_cart,parent,false)
+        val subtitleTextView = rowView.findViewById(R.id.price_textView) as? TextView
+        val titleTextView = rowView.findViewById(R.id.titleBook_text) as? TextView
+        val bookCoverImageView = rowView.findViewById(R.id.imageView) as? ImageView
         val book = getItem(position) as Book
-        titleTextView.text = book.title
-        subtitleTextView.text = book.price.toString()
+        titleTextView?.text ?: book.title
+        if (subtitleTextView != null) {
+            subtitleTextView.text = book.price.toString()
+        }
         Picasso.get().load(book.cover).into(bookCoverImageView);
+        (rowView.findViewById(R.id.remove_button) as? Button)?.setOnClickListener{
+            Cart.remove(book)
+
+        }
 
 
         return rowView
