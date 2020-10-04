@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil.setContentView
 import com.example.henripotier_kotlin.R.layout.activity_cart
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.row_cart.*
 
 class CartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +20,7 @@ class CartActivity : AppCompatActivity() {
         val adapter = CartAdapter(this, Cart.getCart().toMutableList())
         cart_listview.adapter = adapter
 
-        adapter.notifyDataSetChanged();
+
 
         val pricetext = findViewById(R.id.totalPrice_textView) as TextView
 
