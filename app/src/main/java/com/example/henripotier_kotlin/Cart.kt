@@ -8,20 +8,26 @@ object Cart {
 
     private val bookInCart = mutableListOf<Book>()
     private var totalCart : Double = 0.0
-    private var totalCartDiscount : Double = 0.0
+    private var reducApply : Boolean = false
+
+    fun getTotalCart(): Double{
+        return totalCart
+    }
+
+    fun getReducApply(): Boolean{
+        return reducApply
+    }
 
     fun addBook(book:Book): Boolean{
         var validation : Boolean = bookInCart.add(book)
         sumCart()
-        println("ajoutez au panier ${book.title}")
+        reducApply = false
         return validation
     }
 
-    fun getSum() : Double{
-        return totalCart
-    }
-
-    fun remove(book: Book): Boolean{
+    fun removeBook(book: Book): Boolean{
+        sumCart()
+        reducApply = false
         return bookInCart.remove(book)
     }
 
@@ -31,7 +37,7 @@ object Cart {
             val bookPrice : Int = book.price ?: return false //Pas sur de ça
             res += bookPrice
         }
-        totalCart = res
+        this.totalCart = res
         return true
     }
 

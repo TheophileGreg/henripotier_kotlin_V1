@@ -47,13 +47,21 @@ class CartAdapter(private val context: Context, private val dataSource: MutableL
             subtitleTextView.text = book.price.toString()
         }
         Picasso.get().load(book.cover).into(bookCoverImageView);
+
+        //SETONCLICK REMOVE Button
         (rowView.findViewById(R.id.remove_button) as? Button)?.setOnClickListener{
-            Cart.remove(book)
+            Cart.removeBook(book)
+            majCart()
             updateReceiptsList(Cart.getCart().toMutableList())
         }
+
         return rowView
     }
 
+    private fun majCart() {
+        Cart.sumCart()
+
+    }
 
 
 }

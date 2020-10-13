@@ -21,14 +21,15 @@ class CartActivity : AppCompatActivity() {
         val adapter = CartAdapter(this, Cart.getCart().toMutableList())
         cart_listview.adapter = adapter
 
-
+        var pricetext = findViewById(R.id.totalPrice_textView) as TextView
         val buttonRefresh = findViewById<Button>(R.id.button2)
         buttonRefresh.setOnClickListener{
             adapter.notifyDataSetChanged()
+            pricetext.text = "Total : ${Cart.getTotalCart()}"
         }
 
-        val pricetext = findViewById(R.id.totalPrice_textView) as TextView
-        pricetext.text = "Total : ${Cart.getSum().toString()}"
+
+
 
 
     }
