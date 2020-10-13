@@ -1,6 +1,7 @@
 package com.example.henripotier_kotlin
 
 import android.content.Context
+import android.database.DataSetObserver
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+
 
 class CartAdapter(private val context: Context, private val dataSource: MutableList<Book>) :
     BaseAdapter() {
@@ -28,6 +30,12 @@ class CartAdapter(private val context: Context, private val dataSource: MutableL
         return position.toLong()
     }
 
+    fun updateReceiptsList(newlist: MutableList<Book>) {
+        dataSource.clear()
+        dataSource.addAll(newlist)
+        notifyDataSetChanged()
+    }
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val rowView = inflater.inflate(R.layout.row_cart, parent, false)
         val subtitleTextView = rowView.findViewById(R.id.price_textView) as? TextView
@@ -41,7 +49,7 @@ class CartAdapter(private val context: Context, private val dataSource: MutableL
         Picasso.get().load(book.cover).into(bookCoverImageView);
         (rowView.findViewById(R.id.remove_button) as? Button)?.setOnClickListener{
             Cart.remove(book)
-
+            updateReceiptsList(Cart.getCart().toMutableList())
         }
         return rowView
     }
