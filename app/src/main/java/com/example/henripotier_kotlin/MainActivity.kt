@@ -25,19 +25,14 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("TestOnCreate", "test")
-
         //setListeners()
         runBlocking {
             getBooks()
-
             delay(5000)
         }
 
         val adapter = BooksAdapter(this, bookList)
         book_listview.adapter = adapter
-
-
         //Mise en place du floatingActionButton
         val context = this
         val floatingButtonCart =

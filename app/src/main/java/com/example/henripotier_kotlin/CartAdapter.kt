@@ -31,10 +31,10 @@ class CartAdapter(private val context: Context, private val dataSource: MutableL
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val rowView = inflater.inflate(R.layout.row_cart, parent, false)
         val subtitleTextView = rowView.findViewById(R.id.price_textView) as? TextView
-        val titleTextView = rowView.findViewById(R.id.titleBook_text) as? TextView
+        val titleTextView = rowView.findViewById(R.id.titleBook_textView) as? TextView
         val bookCoverImageView = rowView.findViewById(R.id.imageView) as? ImageView
         val book = getItem(position) as Book
-        titleTextView?.text ?: book.title
+        titleTextView?.text = book.title
         if (subtitleTextView != null) {
             subtitleTextView.text = book.price.toString()
         }

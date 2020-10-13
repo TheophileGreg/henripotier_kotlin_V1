@@ -20,10 +20,7 @@ class CartActivity : AppCompatActivity() {
         val adapter = CartAdapter(this, Cart.getCart().toMutableList())
         cart_listview.adapter = adapter
 
-
-
         val pricetext = findViewById(R.id.totalPrice_textView) as TextView
-
 
         pricetext.text = "Total : ${Cart.getSum().toString()}"
 
