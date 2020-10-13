@@ -21,7 +21,7 @@
     <string name="AddToCart_text">Ajouter</string>
     <string name="titleBook">TitleBookInit</string>
     <string name="priceBook">TextView</string>
-    <string name="removeButton">Button</string>
+    <string name="removeButton">Supprimer</string>
     <string name="contentDescription">Couverture du book</string>
 
 </resources>
