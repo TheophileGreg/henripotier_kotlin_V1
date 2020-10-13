@@ -9,11 +9,23 @@ object Cart {
     private val bookInCart = mutableListOf<Book>()
     private var totalCart : Double = 0.0
     private var reducApply : Boolean = false
+    private var reducAmount : Double = 0.0
+
+    //Ne doit pas rester ici
+    private var discount: Discounts = Discounts(8.0, 10.0, sliceDiscount(66.0, 15.0))
 
     fun getTotalCart(): Double{
         return totalCart
     }
 
+    fun getReducAmount():Double{
+        return reducAmount
+    }
+
+    fun applyReduc(){
+        reducApply = true
+        reducAmount = discount.getBestDiscount(totalCart)
+    }
     fun getReducApply(): Boolean{
         return reducApply
     }
