@@ -12,7 +12,7 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 
 
-class CartAdapter(private val context: Context, private val dataSource: MutableList<Book>) :
+class CartAdapter(private val context: Context, private val dataSource: MutableList<Book>, private val onRemove: () -> Unit) :
     BaseAdapter() {
 
     private val inflater: LayoutInflater =
@@ -53,6 +53,7 @@ class CartAdapter(private val context: Context, private val dataSource: MutableL
             Cart.removeBook(book)
             majCart()
             updateReceiptsList(Cart.getCart().toMutableList())
+            onRemove()
         }
 
         return rowView

@@ -18,20 +18,25 @@ class CartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_cart)
-
-        val adapter = CartAdapter(this, Cart.getCart().toMutableList())
-        cart_listview.adapter = adapter
-
-        var totalBeforeReductext = findViewById(R.id.totalPrice_textView) as TextView
-
         var totalReducText = findViewById<TextView>(R.id.reduc_textView)
         var totalAfterText = findViewById<TextView>(R.id.totalAfterReduc_textView)
+        var totalBeforeReductext = findViewById(R.id.totalPrice_textView) as TextView
+
+
+        val adapter = CartAdapter(this, Cart.getCart().toMutableList(), {totalBeforeReductext.text = "Total : ${Cart.getTotalCart()}€"
+            totalReducText.text = null
+            totalAfterText.text = null})
+        cart_listview.adapter = adapter
+
+
+
+
 
         val buttonReduc = findViewById<Button>(R.id.reducButton)
         buttonReduc.setOnClickListener{
             Cart.applyReduc()
-            totalReducText.text = "Réduction : -${Cart.getReducAmount()}€"
-            var total = Cart.getTotalCart() - Cart.getReducAmount()
+            totalReducText.text = "Réduction : -${Cart.getReducAmount().toInt()}€"
+            var total = Cart.getTotalCart() - Cart.getReducAmount().toInt()
             totalAfterText.text = "Total après réduction : ${total}€ "
         }
 
