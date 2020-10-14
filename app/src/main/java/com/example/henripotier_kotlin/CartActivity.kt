@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil.setContentView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.henripotier_kotlin.R.layout.activity_cart
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,17 +23,26 @@ class CartActivity : AppCompatActivity() {
         var totalAfterText = findViewById<TextView>(R.id.totalAfterReduc_textView)
         var totalBeforeReductext = findViewById(R.id.totalPrice_textView) as TextView
 
-
-        val adapter = CartAdapter(this, Cart.getCart().toMutableList(), {totalBeforeReductext.text = "Total : ${Cart.getTotalCart()}€"
+        val adapterRecycler = CartRecyclerViewAdapter(Cart.getCart().toMutableList(), {
+            totalBeforeReductext.text = "Total : ${Cart.getTotalCart()}€"
             totalReducText.text = null
             totalAfterText.text = null})
-        cart_listview.adapter = adapter
+
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapterRecycler
+
+       /* val adapter = CartAdapter(this, Cart.getCart().toMutableList(), {
+            totalBeforeReductext.text = "Total : ${Cart.getTotalCart()}€"
+            totalReducText.text = null
+            totalAfterText.text = null})
+        cart_listview.adapter = adapter*/
 
 
 
 
 
-        val buttonReduc = findViewById<Button>(R.id.reducButton)
+       /* val buttonReduc = findViewById<Button>(R.id.reducButton)
         buttonReduc.setOnClickListener{
             Cart.applyReduc()
             totalReducText.text = "Réduction : -${Cart.getReducAmount().toInt()}€"
@@ -43,11 +53,10 @@ class CartActivity : AppCompatActivity() {
         val buttonRefresh = findViewById<Button>(R.id.button2)
         buttonRefresh.text = "Refresh"
         buttonRefresh.setOnClickListener{
-            adapter.notifyDataSetChanged()
             totalReducText.text = null
             totalAfterText.text = null
             totalBeforeReductext.text = "Total : ${Cart.getTotalCart()}€"
-        }
+        }*/
 
 
     }
