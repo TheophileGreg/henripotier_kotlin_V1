@@ -2,9 +2,9 @@ package com.example.henripotier_kotlin
 
 import androidx.recyclerview.widget.DiffUtil
 
-class MyDiffCallBack(oldList : MutableList<Book>, newList: MutableList<Book>) : DiffUtil.Callback() {
+class MyDiffCallBack(oldList : MutableList<Book>, newList: List<Book>) : DiffUtil.Callback() {
     val oldList : MutableList<Book> = oldList
-    val newList : MutableList<Book> = newList
+    val newList : List<Book> = newList
 
     override fun getOldListSize(): Int {
         return oldList.size
@@ -12,14 +12,17 @@ class MyDiffCallBack(oldList : MutableList<Book>, newList: MutableList<Book>) : 
 
     override fun getNewListSize(): Int {
         return newList.size
+
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].isbn == newList[newItemPosition].isbn
+        if (newItemPosition < newList.size) return oldList[oldItemPosition].isbn == newList[newItemPosition].isbn
+        else return false
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].equals(newList[newItemPosition])
+        if (newItemPosition < newList.size) return oldList[oldItemPosition] == newList[newItemPosition]
+        else return false
     }
 
 }

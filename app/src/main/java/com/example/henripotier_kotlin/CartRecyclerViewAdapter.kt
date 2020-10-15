@@ -27,10 +27,17 @@ class CartRecyclerViewAdapter(var books: MutableList<Book>, private val onRemove
         holder.subtitleTextView?.text = books[position].price.toString()
         Picasso.get().load(books[position].cover).into(holder?.bookCoverImageView);
         holder.suppButton?.setOnClickListener{
+            println(books[position])
+            println("Ancienne list : " + Cart.getCart().toString())
+            println(Cart.getCart().size)
             runBlocking { Cart.removeBook(books[position]) }
-            books = Cart.getCart().toMutableList()
+            val newBooks = Cart.getCart().toList()
+            val diffResult = updateList(newBooks)
+            books.clear()
+            books.addAll(newBooks)
             onRemove()
-            updateList(Cart.getCart().toMutableList())
+            diffResult.dispatchUpdatesTo(this)
+            println(Cart.getCart().size)
         }
     }
 
@@ -40,9 +47,8 @@ class CartRecyclerViewAdapter(var books: MutableList<Book>, private val onRemove
     }
 
 
-    fun updateList(newList: MutableList<Book>) {
-        val diffResult = DiffUtil.calculateDiff( MyDiffCallBack(this.books, newList))
-        diffResult.dispatchUpdatesTo(this)
+    fun updateList(newList: List<Book>) : DiffUtil.DiffResult{
+        return DiffUtil.calculateDiff( MyDiffCallBack(books, newList))
     }
 
     class ViewHolder( val rowBook: View) : RecyclerView.ViewHolder(rowBook){
