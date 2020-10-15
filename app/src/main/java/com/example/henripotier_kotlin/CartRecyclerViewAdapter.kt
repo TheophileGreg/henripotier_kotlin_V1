@@ -23,21 +23,18 @@ class CartRecyclerViewAdapter(var books: MutableList<Book>, private val onRemove
     }
 
     override fun onBindViewHolder(holder: CartRecyclerViewAdapter.ViewHolder, position: Int) {
+        val book = books[position]
         holder.titleView?.text = books[position].title
-        holder.subtitleTextView?.text = books[position].price.toString()
+        holder.subtitleTextView?.text = position.toString()
         Picasso.get().load(books[position].cover).into(holder?.bookCoverImageView);
         holder.suppButton?.setOnClickListener{
-            println(books[position])
-            println("Ancienne list : " + Cart.getCart().toString())
-            println(Cart.getCart().size)
-            runBlocking { Cart.removeBook(books[position]) }
+            Cart.removeBook(book)
             val newBooks = Cart.getCart().toList()
             val diffResult = updateList(newBooks)
             books.clear()
             books.addAll(newBooks)
-            onRemove()
             diffResult.dispatchUpdatesTo(this)
-            println(Cart.getCart().size)
+            onRemove()
         }
     }
 
